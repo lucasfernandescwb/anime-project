@@ -23,7 +23,7 @@ export default function Character() {
 
   const rawDescription = data.Character.description
 
-  const formattedDescription = converter.makeHtml(rawDescription).split('</p>')
+  const formattedDescription = rawDescription !== null ? converter.makeHtml(rawDescription).split('</p>') : ''
 
   return (
     <Box className='content' color={'gray.500'}> 
@@ -58,7 +58,7 @@ export default function Character() {
                 </Text>
                 )}
 
-                {formattedDescription.map((v, index) => <Box mt={index > 0 ? '1rem' : 0} key={index} dangerouslySetInnerHTML={{ __html: index !== 0  ? formattedDescription[index] + '</p>' : formattedDescription[index].replace(/\n/gi, '<br />') + '</p>'}} p='0 .5rem 0 0' />)}
+                {formattedDescription && formattedDescription.map((v, index) => <Box mt={index > 0 ? '1rem' : 0} key={index} dangerouslySetInnerHTML={{ __html: index !== 0  ? formattedDescription[index] + '</p>' : formattedDescription[index].replace(/\n/gi, '<br />') + '</p>'}} p='0 .5rem 0 0' />)}
             </Box>
           </VStack>
         </HStack>
@@ -97,7 +97,7 @@ export default function Character() {
                 </Text>
               )}
 
-              {formattedDescription.map((v, index) => <Box mt={index > 0 ? '1rem' : 0} key={index} dangerouslySetInnerHTML={{ __html: index !== 0  ? formattedDescription[index] + '</p>' : formattedDescription[index].replace(/\n/gi, '<br />') + '</p>'}} p='0 .5rem 0 0' />)}
+              {formattedDescription && formattedDescription.map((v, index) => <Box mt={index > 0 ? '1rem' : 0} key={index} dangerouslySetInnerHTML={{ __html: index !== 0  ? formattedDescription[index] + '</p>' : formattedDescription[index].replace(/\n/gi, '<br />') + '</p>'}} p='0 .5rem 0 0' />)}
             </Box>
           </VStack>
       </Show>

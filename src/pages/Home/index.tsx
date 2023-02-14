@@ -46,7 +46,7 @@ export default function Home() {
       ) : (
         <Box mt='3rem'>
           <Tag size={'md'} borderRadius='md' animation={'onLoadCard .3s linear'} colorScheme='purple'>
-            <TagLabel color={'gray.500'}>{search}</TagLabel>
+            <TagLabel color={'gray.500'} textTransform='capitalize'>{search}</TagLabel>
             <TagCloseButton onClick={() => setSearch('')} />
           </Tag>
 
