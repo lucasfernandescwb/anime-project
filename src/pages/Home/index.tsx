@@ -44,18 +44,18 @@ export default function Home() {
           <Listing title='All time popular' sort='POPULARITY_DESC' />
         </>
       ) : (
-        <Box mt='3rem'>
-          <Tag size={'md'} borderRadius='md' animation={'onLoadCard .3s linear'} colorScheme='purple'>
+        <Flex mt='2rem' flexDir={'column'}>
+          <Tag size={'md'} borderRadius='md' animation={'onLoadCard .3s linear'} colorScheme='purple' w='fit-content' alignSelf={{ base: 'center', sm: 'flex-start' }}>
             <TagLabel color={'gray.500'} textTransform='capitalize'>{search}</TagLabel>
             <TagCloseButton onClick={() => setSearch('')} />
           </Tag>
 
           {data.Page.media.length === 0 ? <Heading color='gray.500' textAlign={'center'} mt='3rem'>No results</Heading> : (
-            <SimpleGrid minChildWidth={'195px'} spacing={5} mt='3rem' justifyItems={{ base: 'center', md: 'start' }}>
+            <Flex gap={{ base: '1rem', sm: '2rem' }} justify={{ base: 'center', md: data.Page.media.length < 6 ? 'flex-start' : 'space-between' }} wrap={'wrap'} mt='2rem'>
               {data.Page.media.map((item: any) => <Card key={item.id} data={item} />)}
-          </SimpleGrid>
+            </Flex>
           )}
-        </Box>
+        </Flex>
       )}
 
     </Box>
