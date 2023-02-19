@@ -31,7 +31,7 @@ export default function Character() {
         <HStack align={'flex-start'} spacing={8}>
           <Image 
             src={data.Character.image.large} 
-            w='240px' 
+            w='auto' 
             h='auto'
             borderRadius={'2px'} 
             boxShadow='var(--box-shadow-img)'  
@@ -68,8 +68,6 @@ export default function Character() {
         <VStack align={'center'}>
           <Image 
             src={data.Character.image.large} 
-            w='210px' 
-            h='auto'
             borderRadius={'2px'} 
             boxShadow='var(--box-shadow-img)'  
             objectFit={'cover'}

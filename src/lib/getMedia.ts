@@ -6,6 +6,13 @@ const GET_QUERY = gql`
           id
           title { userPreferred }
           bannerImage
+          season
+          seasonYear
+          type
+          source
+          format
+          status
+          genres
           coverImage { extraLarge }
           description
           characters(sort: FAVOURITES_DESC, perPage: 12) {

@@ -11,7 +11,8 @@ import {
   TabPanel, 
   Heading, 
   VStack, 
-  SimpleGrid 
+  SimpleGrid,
+  Text
 } from '@chakra-ui/react'
 import { useParams } from 'react-router-dom'
 
@@ -49,17 +50,19 @@ export default function Details() {
 
       <Box className='content'>
         <Hide breakpoint='(max-width: 428px)'>
-          <HStack spacing={8} align='flex-start'>
-            <Image 
-              src={data.Media.coverImage.extraLarge} 
-              w='300px' 
-              h='auto'
-              borderRadius={'2px'} 
-              boxShadow='var(--box-shadow-img)'  
-              objectFit={'cover'}
-            />
+          <HStack spacing={5} align='start'>
+            <Box w='240px' h={'305px'} overflow={'hidden'} borderRadius='2px' boxShadow={'var(--box-shadow-img)'}>
+              <Image 
+                src={data.Media.coverImage.extraLarge}
+                w='100%'
+                h={'100%'}
+                objectFit='cover'
+                alt='Anime image'
+              />
+            </Box>
 
-            <VStack align={'flex-start'} spacing={6}>
+            
+            <VStack w='100%' align='start'>
               <Heading>{data.Media.title.userPreferred}</Heading>
 
               <Box dangerouslySetInnerHTML={{ __html: formattedDescription }} p='0 .5rem 0 0' />
@@ -71,7 +74,7 @@ export default function Details() {
           <VStack spacing={6} align='center' w='100%'>
             <Image 
               src={data.Media.coverImage.extraLarge} 
-              w='300px' 
+              w='auto' 
               h='auto'
               borderRadius={'2px'} 
               boxShadow='var(--box-shadow-img)'  
@@ -90,16 +93,33 @@ export default function Details() {
       <Box className='content'>
         <Tabs defaultIndex={0} variant='enclosed' colorScheme={'purple'}>
           <TabList>
-            <Tab _selected={{ bg: 'purple.400', color: 'white' }}>Characters</Tab>
+            <Tab _selected={{ bg: 'purple.400', color: 'white' }}>Overview</Tab>
           </TabList>
 
-          <TabPanels mt='2rem'>
+          <TabPanels mt='1.5rem'>
             <TabPanel padding={{ sm: 0, md: '1rem' }}>
-              <Heading as='h3' size={'md'}>Most popular</Heading>
+              
+              <Box>
+                <Heading as='h3' size={'md'}>Some infos</Heading>
 
-              <SimpleGrid minChildWidth={'300px'} spacing={5} justifyItems='center' mt='1.5rem'>
-                {data.Media.characters.nodes.map((c: any) => <Character data={c} key={c.id} />)}
-              </SimpleGrid>
+                <VStack align='start' mt='1rem'>
+                  <Text>Source: <Text as='span' color='purple.500'>{data.Media.source.replace("_", " ")}</Text></Text>
+                  <Text>Type: <Text as='span' color='purple.500'>{data.Media.type}</Text></Text>
+                  <Text>Format: <Text as='span' color='purple.500'>{data.Media.format}</Text></Text>
+                  <Text>Season Year: <Text as='span' color='purple.500'>{data.Media.seasonYear}</Text></Text>
+                  <Text>Season: <Text as='span' color='purple.500'>{data.Media.season}</Text></Text>
+                  <Text>Status: <Text as='span' color='purple.500'>{data.Media.status}</Text></Text>
+                  <Text>Genres: <Text as='span' color='purple.500'>{data.Media.genres.join(', ')}</Text></Text>
+                </VStack>
+              </Box>
+
+              <Box mt='2rem'>
+                <Heading as='h3' size={'md'}>Most popular characters</Heading>
+
+                <SimpleGrid minChildWidth={'300px'} spacing={5} justifyItems='center' mt='1.5rem'>
+                  {data.Media.characters.nodes.map((c: any) => <Character data={c} key={c.id} />)}
+                </SimpleGrid>
+              </Box>
             </TabPanel>
           </TabPanels>
         </Tabs>
